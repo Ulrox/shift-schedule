@@ -1,6 +1,6 @@
 {
-  "name": "爸爸班表行事曆",
-  "short_name": "爸爸班表",
+  "name": "工作班表行事曆",
+  "short_name": "工作班表",
   "description": "爸爸輪班行事曆 - 早班、晚班、休假一目瞭然",
   "start_url": "./index.html",
   "display": "standalone",
