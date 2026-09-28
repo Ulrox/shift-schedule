@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="爸爸班表" />
+  <meta name="description" content="爸爸排班行事曆 - 早班、晚班、休假一目瞭然" />
+  <title>工作班表行事曆</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-icon">👔</div>
+        <div class="header-text">
+          <h1 class="app-title">工作班表</h1>
+          <p class="app-subtitle">輪班行事曆</p>
+        </div>
+        <button class="today-btn" id="todayBtn" onclick="goToToday()">今天</button>
+      </div>
+    </header>
+
+    <!-- Legend -->
+    <div class="legend-bar">
+      <div class="legend-item">
+        <span class="legend-dot morning"></span>
+        <span>早班</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot night"></span>
+        <span>晚班</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot off"></span>
+        <span>休假</span>
+      </div>
+    </div>
+
+    <!-- Date Picker Section -->
+    <div class="picker-section">
+      <p class="picker-label">快速查詢日期</p>
+      <div class="picker-container">
+        <div class="picker-col" id="yearPicker">
+          <div class="picker-scroll" id="yearScroll"></div>
+        </div>
+        <div class="picker-sep">年</div>
+        <div class="picker-col" id="monthPicker">
+          <div class="picker-scroll" id="monthScroll"></div>
+        </div>
+        <div class="picker-sep">月</div>
+        <div class="picker-col" id="dayPicker">
+          <div class="picker-scroll" id="dayScroll"></div>
+        </div>
+        <div class="picker-sep">日</div>
+      </div>
+    </div>
+
+    <!-- Info Card -->
+    <div class="info-card" id="infoCard">
+      <div class="info-icon" id="infoIcon">📅</div>
+      <div class="info-text">
+        <div class="info-date" id="infoDate">請選擇日期</div>
+        <div class="info-shift" id="infoShift">點選月曆日期或使用上方滾輪查詢</div>
+      </div>
+    </div>
+
+    <!-- Calendar Section -->
+    <div class="calendar-section">
+      <div class="calendar-nav">
+        <button class="nav-btn" id="prevBtn" onclick="changeMonth(-1)">&#8249;</button>
+        <div class="calendar-title" id="calendarTitle">2026年 9月</div>
+        <button class="nav-btn" id="nextBtn" onclick="changeMonth(1)">&#8250;</button>
+      </div>
+
+      <div class="calendar-grid">
+        <div class="weekday-header">日</div>
+        <div class="weekday-header">一</div>
+        <div class="weekday-header">二</div>
+        <div class="weekday-header">三</div>
+        <div class="weekday-header">四</div>
+        <div class="weekday-header">五</div>
+        <div class="weekday-header">六</div>
+      </div>
+
+      <div class="calendar-body" id="calendarBody"></div>
+    </div>
+
+    <!-- Bottom padding for safe area -->
+    <div class="safe-bottom"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
