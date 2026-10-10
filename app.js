@@ -145,7 +145,7 @@ function updateInfoCard(date) {
   icon.textContent = SHIFT_ICONS[shift.type];
   const extra = getDayExtra(date);
   const notes = [extra.holiday, extra.term].filter(Boolean).join('・');
-  dateEl.innerHTML = `${formatDateChinese(date)}<span class="info-lunar-inline">${extra.lunarShort}</span>`;
+  dateEl.innerHTML = `${formatDateChinese(date)}<span class="info-lunar-inline">${extra.lunarFull}</span>`;
   shiftEl.textContent = `${shift.label}　第 ${shift.dayNum} 天` + (notes ? `　🎉 ${notes}` : '');
 }
 

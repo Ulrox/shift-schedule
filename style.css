@@ -564,3 +564,16 @@ body {
 .info-date { margin-bottom: 2px; font-size: 13px; }
 .info-shift { font-size: 16px; }
 .info-lunar-inline { margin-left: 8px; color: var(--text-primary); font-weight: 600; }
+
+/* ======= v5：精簡頂部標題列 ======= */
+.app-header { padding: 6px 16px; }
+.header-content { gap: 8px; }
+.header-icon { font-size: 20px; }
+.app-title { font-size: 16px; line-height: 1.1; }
+.app-subtitle { font-size: 10px; line-height: 1.1; }
+.today-btn { padding: 5px 12px; font-size: 12px; }
+.legend-bar { padding: 5px 16px; gap: 16px; }
+.legend-dot { width: 12px; height: 12px; }
+.picker-section { padding: 8px 16px 6px; }
+.picker-label { margin-bottom: 6px; }
+.info-lunar-inline { font-size: 12px; }
