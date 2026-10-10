@@ -543,3 +543,24 @@ body {
   font-size: 13px;
   color: var(--text-secondary);
 }
+
+/* ======= v4：三行格子 + 精簡資訊卡 ======= */
+.cal-cell {
+  aspect-ratio: auto;
+  min-height: 54px;
+  padding: 3px 0;
+  justify-content: flex-start;
+}
+.cal-cell .cell-num   { font-size: 15px; font-weight: 700; line-height: 1.1; }
+.cal-cell .cell-lunar { font-size: 10px; font-weight: 500; line-height: 1.2; opacity: .85; white-space: nowrap; }
+.cal-cell .cell-event { font-size: 9px; font-weight: 800; line-height: 1.2; white-space: nowrap; min-height: 11px; }
+.cal-cell .cell-event.holiday { color: #c62828; }
+.cal-cell .cell-event.term    { color: #0b6b2a; }
+.cal-cell.selected .cell-lunar,
+.cal-cell.selected .cell-event { color: #5a5a00 !important; }
+
+.info-card { margin: 8px 16px; padding: 10px 16px; gap: 12px; }
+.info-icon { font-size: 28px; }
+.info-date { margin-bottom: 2px; font-size: 13px; }
+.info-shift { font-size: 16px; }
+.info-lunar-inline { margin-left: 8px; color: var(--text-primary); font-weight: 600; }

@@ -118,7 +118,8 @@ function renderCalendar() {
     const extra = getDayExtra(date);
     cell.innerHTML = `
       <span class="cell-num">${d}</span>
-      <span class="cell-tag ${extra.kind}">${extra.label}</span>
+      <span class="cell-lunar">${extra.lunarLabel}</span>
+      <span class="cell-event ${extra.eventKind}">${extra.eventLabel}</span>
     `;
 
     cell.addEventListener('click', () => {
@@ -144,10 +145,8 @@ function updateInfoCard(date) {
   icon.textContent = SHIFT_ICONS[shift.type];
   const extra = getDayExtra(date);
   const notes = [extra.holiday, extra.term].filter(Boolean).join('・');
-  dateEl.textContent  = formatDateChinese(date);
-  shiftEl.textContent = `${shift.label}　第 ${shift.dayNum} 天`;
-  document.getElementById('infoLunar').textContent =
-    extra.lunarFull + (notes ? `　🎉 ${notes}` : '');
+  dateEl.innerHTML = `${formatDateChinese(date)}<span class="info-lunar-inline">${extra.lunarShort}</span>`;
+  shiftEl.textContent = `${shift.label}　第 ${shift.dayNum} 天` + (notes ? `　🎉 ${notes}` : '');
 }
 
 // ===== 選擇日期 =====

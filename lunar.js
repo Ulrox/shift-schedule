@@ -93,13 +93,14 @@ function getDayExtra(date) {
   const lunar = getLunar(date);
   const holiday = getHoliday(date, lunar);
   const term = getSolarTerm(date);
-  let label, kind;
-  if (holiday)          { label = holiday;         kind = 'holiday'; }
-  else if (term)        { label = term;            kind = 'term'; }
-  else if (lunar.day === 1) { label = lunar.monthName; kind = 'month'; }
-  else                  { label = lunar.dayName;   kind = 'day'; }
+  // 農曆行：每天都有；初一顯示月份
+  const lunarLabel = lunar.day === 1 ? lunar.monthName : lunar.dayName;
+  // 事件行：節日優先，其次節氣；沒有就留空
+  const eventLabel = holiday || term || '';
+  const eventKind  = holiday ? 'holiday' : (term ? 'term' : '');
   return {
-    label, kind, holiday, term,
-    lunarFull: `農曆${lunar.monthName}${lunar.dayName}`
+    lunarLabel, eventLabel, eventKind, holiday, term,
+    lunarFull: `農曆${lunar.monthName}${lunar.dayName}`,
+    lunarShort: `${lunar.monthName}${lunar.dayName}`
   };
 }
