@@ -577,3 +577,25 @@ body {
 .picker-section { padding: 8px 16px 6px; }
 .picker-label { margin-bottom: 6px; }
 .info-lunar-inline { font-size: 12px; }
+
+/* ======= v6：標題列折衷尺寸 + 右上角班別天數 ======= */
+.app-header { padding: 10px 16px; }
+.header-icon { font-size: 24px; }
+.app-title { font-size: 18px; }
+.today-btn { padding: 0 16px; height: 36px; min-width: 60px; font-size: 14px; }
+
+.cal-cell .cell-badge {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 12px;
+  padding: 2px 3px;
+  border-radius: 6px;
+  text-align: center;
+  background: rgba(0,0,0,0.12);
+  color: inherit;
+}
+.cal-cell.selected .cell-badge { background: rgba(0,0,0,0.18); color: #5a5a00; }

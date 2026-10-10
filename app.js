@@ -117,6 +117,7 @@ function renderCalendar() {
 
     const extra = getDayExtra(date);
     cell.innerHTML = `
+      <span class="cell-badge">${shift.dayNum}</span>
       <span class="cell-num">${d}</span>
       <span class="cell-lunar">${extra.lunarLabel}</span>
       <span class="cell-event ${extra.eventKind}">${extra.eventLabel}</span>
