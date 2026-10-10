@@ -71,35 +71,72 @@ const LUNAR_HOLIDAYS = {
 };
 
 function getHoliday(date, lunar) {
+  const list = [];
   const solar = SOLAR_HOLIDAYS[`${date.getMonth() + 1}-${date.getDate()}`];
-  if (solar) return solar;
+  if (solar) list.push(solar);
+
   if (!lunar.leap) {
     const l = LUNAR_HOLIDAYS[`${lunar.month}-${lunar.day}`];
-    if (l) return l;
-    // 除夕：隔天是正月初一
+    if (l) list.push(l);
+
+    // 除夕：隔天是正月初一且非閏月
     const next = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
     const n = getLunar(next);
-    if (n.month === 1 && n.day === 1 && !n.leap) return '除夕';
+    if (n.month === 1 && n.day === 1 && !n.leap) list.push('除夕');
   }
-  return null;
+  return list.length > 0 ? list : null;
 }
 
 /**
  * 回傳月曆格子要顯示的資訊與完整文字
- * @returns {{ label, kind, lunarFull, holiday, term }}
- *  kind: 'holiday' | 'term' | 'month' | 'day'
+ * @returns {{ lunarLabel, eventLabel, eventKind, holiday, term, lunarFull, lunarShort }}
  */
 function getDayExtra(date) {
   const lunar = getLunar(date);
-  const holiday = getHoliday(date, lunar);
-  const term = getSolarTerm(date);
+  const holidays = getHoliday(date, lunar); // string[] | null
+  const term = getSolarTerm(date);          // string | null
+
+  // 清明節既是節氣也是國定假日
+  if (term === '清明' && (!holidays || !holidays.includes('清明'))) {
+    if (!holidays) {
+      // 獨立清明
+    }
+  }
+
   // 農曆行：每天都有；初一顯示月份
   const lunarLabel = lunar.day === 1 ? lunar.monthName : lunar.dayName;
-  // 事件行：節日優先，其次節氣；沒有就留空
-  const eventLabel = holiday || term || '';
-  const eventKind  = holiday ? 'holiday' : (term ? 'term' : '');
+
+  // 整理所有今日特殊事件
+  const allEvents = [];
+  if (holidays) allEvents.push(...holidays);
+  if (term && !allEvents.includes(term)) allEvents.push(term);
+
+  // 月曆格子事件標籤（格子小，若多事件取最重要一個或簡寫）
+  let eventLabel = '';
+  let eventKind = '';
+  if (allEvents.length > 0) {
+    // 優先順序：春節、除夕、國定節日 > 一般節慶 > 節氣
+    eventLabel = allEvents[0];
+    eventKind = holidays ? 'holiday' : 'term';
+    // 若同時有 兒童+清明，標示 清明（更具代表性）
+    if (allEvents.includes('清明')) {
+      eventLabel = '清明';
+      eventKind = 'holiday';
+    }
+  }
+
+  // 整合 holiday 欄位給資訊卡顯示
+  let holidayText = holidays ? holidays.join('・') : null;
+  if (term === '清明') {
+    holidayText = holidayText ? `${holidayText}・清明` : '清明';
+  }
+
   return {
-    lunarLabel, eventLabel, eventKind, holiday, term,
+    lunarLabel,
+    eventLabel,
+    eventKind,
+    holiday: holidayText,
+    term: term !== '清明' ? term : null,
     lunarFull: `農曆${lunar.monthName}${lunar.dayName}`,
     lunarShort: `${lunar.monthName}${lunar.dayName}`
   };

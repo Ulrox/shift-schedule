@@ -1,5 +1,5 @@
 // 爸爸班表行事曆 - Service Worker（離線快取）
-const CACHE_NAME = 'dad-schedule-v7';
+const CACHE_NAME = 'dad-schedule-v8';
 const ASSETS = [
   './',
   './index.html',
