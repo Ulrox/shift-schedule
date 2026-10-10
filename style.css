@@ -524,3 +524,22 @@ body {
   .cal-cell .cell-num { font-size: 13px; }
   .cal-cell .cell-tag { font-size: 8px; }
 }
+
+/* ======= 農曆 / 節氣 / 節日 小字 ======= */
+.cal-cell .cell-tag {
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 3px;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+.cal-cell .cell-tag.month   { font-weight: 800; opacity: 1; }
+.cal-cell .cell-tag.term    { color: #0b6b2a; font-weight: 800; opacity: 1; }
+.cal-cell .cell-tag.holiday { color: #c62828; font-weight: 900; opacity: 1; }
+.cal-cell.selected .cell-tag { color: #5a5a00 !important; }
+
+.info-lunar {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}

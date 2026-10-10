@@ -1,10 +1,11 @@
 // 爸爸班表行事曆 - Service Worker（離線快取）
-const CACHE_NAME = 'dad-schedule-v2';
+const CACHE_NAME = 'dad-schedule-v3';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
+  './lunar.js',
   './manifest.json',
   'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap'
 ];

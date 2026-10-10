@@ -115,9 +115,10 @@ function renderCalendar() {
     if (dayOfWeek === 6) classes.push('saturday');
     cell.className = classes.join(' ');
 
+    const extra = getDayExtra(date);
     cell.innerHTML = `
       <span class="cell-num">${d}</span>
-      <span class="cell-tag">${shift.tag}${shift.dayNum}</span>
+      <span class="cell-tag ${extra.kind}">${extra.label}</span>
     `;
 
     cell.addEventListener('click', () => {
@@ -141,8 +142,12 @@ function updateInfoCard(date) {
 
   card.className = `info-card ${shift.type}`;
   icon.textContent = SHIFT_ICONS[shift.type];
+  const extra = getDayExtra(date);
+  const notes = [extra.holiday, extra.term].filter(Boolean).join('・');
   dateEl.textContent  = formatDateChinese(date);
   shiftEl.textContent = `${shift.label}　第 ${shift.dayNum} 天`;
+  document.getElementById('infoLunar').textContent =
+    extra.lunarFull + (notes ? `　🎉 ${notes}` : '');
 }
 
 // ===== 選擇日期 =====
